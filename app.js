@@ -6,9 +6,10 @@ const mongoose = require("./dbHelper/mongoose");
 
 const userRoute = require("./routes/users");
 const feedbackRoute = require("./routes/feedbacks");
+const foodRoute = require("./routes/foods");
 
 app.use(morgan("dev"));
-app.use("/uploads", express.static("uploads"));
+app.use("/images", express.static("images"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use("/users", userRoute);
 app.use("/feedbacks", feedbackRoute);
+app.use("/foods", foodRoute);
 
 //error handling
 app.use((req, res, next) => {

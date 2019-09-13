@@ -6,12 +6,12 @@ const User = require("../models/users");
 
 //route for registering users
 router.post("/register", (req, res) => {
-  User.find({ email: req.body.email, phone: req.body.phone })
+  User.find({ phone: req.body.phone })
     .exec()
     .then(user => {
       if (user.length >= 1) {
         res.status(201).json({
-          message_error: "Email or Phone Number already exists"
+          message_error: "Phone Number already exists"
         });
       } else {
         const user = new User({

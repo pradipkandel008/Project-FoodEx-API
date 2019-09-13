@@ -7,6 +7,8 @@ const mongoose = require("./dbHelper/mongoose");
 const userRoute = require("./routes/users");
 const feedbackRoute = require("./routes/feedbacks");
 const foodRoute = require("./routes/foods");
+const foodTypeRoute = require("./routes/foodtypes");
+const foodCategoryRoute = require("./routes/foodcategories");
 
 app.use(morgan("dev"));
 app.use("/images", express.static("images"));
@@ -33,6 +35,8 @@ app.use((req, res, next) => {
 app.use("/users", userRoute);
 app.use("/feedbacks", feedbackRoute);
 app.use("/foods", foodRoute);
+app.use("/foodcategories", foodCategoryRoute);
+app.use("/foodtypes", foodTypeRoute);
 
 //error handling
 app.use((req, res, next) => {

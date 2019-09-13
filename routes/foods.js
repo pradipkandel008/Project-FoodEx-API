@@ -61,8 +61,8 @@ router.post("/addFood", upload.single("food_image"), (req, res) => {
     });
 });
 
-//route for getting all courses
-router.get("/", function(req, res) {
+//route for getting all food
+router.get("/food", function(req, res) {
   Food.find()
     .sort({ createdAt: -1 }) //sort in descending order
     .exec()
@@ -104,10 +104,10 @@ router.get("/offerfood", function(req, res) {
 
 //route for getting course by id
 router.get("/:id", function(req, res) {
-  Course.findById(req.params.id)
+  Food.findById(req.params.id)
 
-    .then(function(course) {
-      res.send(course);
+    .then(function(food) {
+      res.send(food);
     })
     .catch(function(e) {
       res.send(e);

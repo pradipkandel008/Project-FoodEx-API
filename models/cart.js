@@ -9,8 +9,14 @@ const cartSchema = new Schema(
     food_name: {
       type: String
     },
-    price: {
+    food_price: {
       type: String
+    },
+    food_quantity:{
+      type:String
+    },
+    food_image_name:{
+      type:String
     }
   },
   {

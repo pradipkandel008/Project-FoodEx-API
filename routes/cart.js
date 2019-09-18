@@ -3,13 +3,16 @@ const router = express.Router();
 const Cart = require("../models/cart");
 const auth = require("../middleware/auth");
 
-//route for adding feedback
+//route for adding to cart
 router.post("/", (req, res) => {
-  Cart.find({ phone: req.body.phone, food_name: req.body.food_name });
+  //Cart.find({ phone: req.body.phone, food_name: req.body.food_name });
   const cart = new Cart({
     phone: req.body.phone,
     food_name: req.body.food_name,
-    price: req.body.price
+    food_price: req.body.food_price,
+    food_quantity:req.body.food_quantity,
+    food_image_name:req.body.food_image_name
+
   });
   cart
     .save()

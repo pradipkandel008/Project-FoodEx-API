@@ -72,7 +72,7 @@ router.post("/login", async function(req, res) {
       });
     } else {
       res.json({
-        message: "Username and Password do not match or do not exist."
+        message: "Invalid"
       });
     }
   } catch (e) {

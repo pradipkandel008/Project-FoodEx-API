@@ -10,6 +10,7 @@ const foodRoute = require("./routes/foods");
 const foodTypeRoute = require("./routes/foodtypes");
 const foodCategoryRoute = require("./routes/foodcategories");
 const cartRoute = require("./routes/cart");
+const ratingRoute = require("./routes/rating");
 
 app.use(morgan("dev"));
 app.use("/images", express.static("images"));
@@ -39,6 +40,7 @@ app.use("/foods", foodRoute);
 app.use("/foodcategories", foodCategoryRoute);
 app.use("/foodtypes", foodTypeRoute);
 app.use("/carts", cartRoute);
+app.use("/ratings", ratingRoute);
 
 //error handling
 app.use((req, res, next) => {

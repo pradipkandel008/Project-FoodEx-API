@@ -5,33 +5,41 @@ const auth = require("../middleware/auth");
 
 //route for adding to cart
 router.post("/", (req, res) => {
-  //Cart.find({ phone: req.body.phone, food_name: req.body.food_name });
-  const cart = new Cart({
-    phone: req.body.phone,
-    food_name: req.body.food_name,
-    food_price: req.body.food_price,
-    food_quantity:req.body.food_quantity,
-    food_image_name:req.body.food_image_name
-
-  });
-  cart
-    .save()
-    .then(result => {
-      res.status(201).json({
-        message: "Food added to cart successfully"
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        message: err
-      });
+  Cart.find({ phone: req.body.phone, food_name: req.body.food_name })
+  .exec()
+    .then(cart => {
+      if (cart.length >= 1) {
+        res.status(201).json({
+          message_error: "Item already in cart"
+        });
+      } else {
+        const cart = new Cart({
+          phone: req.body.phone,
+          food_name: req.body.food_name,
+          food_price: req.body.food_price,
+          food_quantity:req.body.food_quantity,
+          food_imagename:req.body.food_imagename
+        });
+        cart
+          .save()
+          .then(result => {
+            res.status(201).json({
+              message_success: "Food added to cart successfully"
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500).json({
+              message: err
+            });
+          });
+      }
     });
-});
+  });
 
 //route for getting all cart
-router.get("/", function(req, res) {
-  Cart.find({ phone: req.body.phone })
+router.get("/:phone", function(req, res) {
+  Cart.find({ phone: req.params.phone.toString() })
     .sort({ createdAt: -1 }) //sort in descending order
     .exec()
     .then(function(cart) {

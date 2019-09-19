@@ -17,13 +17,13 @@ router.post("/", (req, res) => {
         const rating = new Rating({
           phone: req.body.phone,
           food_name: req.body.food_name,
-          food_rating: req.body.rating
+          rating: req.body.rating
         });
         rating
           .save()
           .then(result => {
             res.status(201).json({
-              message_success: "Food Rated Successfully"
+              message_success: "Success"
             });
           })
           .catch(err => {
@@ -37,16 +37,19 @@ router.post("/", (req, res) => {
 });
 
 //route for getting inidividual rating
-router.get("/", function(req, res) {
-  Rating.find({ phone: req.body.phone, food_name: req.body.food_name })
-    .sort({ createdAt: -1 }) //sort in descending order
-    .exec()
-    .then(function(rating) {
-      res.send(rating);
-    })
-    .catch(function(e) {
-      res.send(e);
-    });
+router.post("/myRating", function(req, res) {
+  try {
+    Rating.find({ phone: req.body.phone, food_name: req.body.food_name })
+      .exec()
+      .then(function(rating) {
+        res.send(rating);
+      })
+      .catch(function(e) {
+        res.send(e);
+      });
+  } catch (e) {
+    res.send(e);
+  }
 });
 
 //route for updating rating
@@ -67,7 +70,7 @@ router.put("/:id", function(req, res) {
     })
     .catch(function(e) {
       res.status(500).json({
-        message: err
+        message: e
       });
     });
 });

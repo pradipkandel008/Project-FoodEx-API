@@ -15,7 +15,7 @@ const cartSchema = new Schema(
     food_quantity:{
       type:String
     },
-    food_image_name:{
+    food_imagename:{
       type:String
     }
   },

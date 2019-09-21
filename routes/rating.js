@@ -75,7 +75,7 @@ router.put("/:id", function(req, res) {
     });
 });
 
-//route for getting total rating
+/* //route for getting total rating
 router.get("/totalrating", function(req, res) {
   Rating.find({ food_name: req.body.food_name })
     .sort({ createdAt: -1 }) //sort in descending order
@@ -87,5 +87,26 @@ router.get("/totalrating", function(req, res) {
       res.send(e);
     });
 });
+ */
 
+router.get("/totalrating/:food_name", (req, res) => {
+  Rating.find({ food_name: req.params.food_name })
+    .select("rating")
+    .exec()
+    .then(docs => {
+      res.status(200).json({
+        count: docs.length,
+        ratings: docs.map(doc => {
+          return {
+            rating: doc.rating
+          };
+        })
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 module.exports = router;

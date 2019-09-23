@@ -3,15 +3,11 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema(
   {
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-      //required: true
+    phone: {
+      type: String
     },
-    food_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Food"
-      //required: true
+    food_name: {
+      type: String
     },
     quantity: {
       type: String
@@ -23,6 +19,9 @@ const orderSchema = new Schema(
       type: Date
     },
     status: {
+      type: String
+    },
+    food_imagename: {
       type: String
     }
   },

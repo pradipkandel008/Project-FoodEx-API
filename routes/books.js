@@ -39,9 +39,9 @@ router.post("/addBook", upload.single("book_image"), (req, res) => {
   const book = new Book({
     book_name: req.body.book_name,
     book_author: req.body.book_author,
-    food_price: req.body.book_price,
-    food_description: req.body.book_description,
-    food_imagename: req.file.path
+    book_price: req.body.book_price,
+    book_description: req.body.book_description,
+    book_imagename: req.file.path
   });
   book
     .save()

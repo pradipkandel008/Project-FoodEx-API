@@ -41,7 +41,7 @@ router.post("/addRestaurant", upload.single("restaurant_image"), (req, res) => {
     restaurant_latitude: req.body.restaurant_latitude,
     restaurant_longitude: req.body.restaurant_longitude,
     restaurant_description: req.body.restaurant_description,
-    restaurant_rating: req.body.rating,
+    restaurant_rating: req.body.restaurant_rating,
     restaurant_imagename: req.file.path
   });
   restaurant

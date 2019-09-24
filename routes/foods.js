@@ -102,6 +102,19 @@ router.get("/offerfood", function(req, res) {
     });
 });
 
+//route for getting foods with offer
+router.get("/food/:food_category", function(req, res) {
+  Food.find({ food_category: req.params.food_category })
+    .sort({ createdAt: -1 }) //sort in descending order
+    .exec()
+    .then(function(food) {
+      res.send(food);
+    })
+    .catch(function(e) {
+      res.send(e);
+    });
+});
+
 //route for getting course by id
 router.get("/:id", function(req, res) {
   Food.findById(req.params.id)

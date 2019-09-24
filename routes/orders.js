@@ -9,8 +9,8 @@ router.post("/", (req, res) => {
   const order = new Order({
     phone: req.body.phone,
     food_name: req.body.food_name,
-    quantity: req.body.quantity,
-    price: req.body.price,
+    food_quantity: req.body.food_quantity,
+    food_price: req.body.food_price,
     food_imagename: req.body.food_imagename,
     date: moment(),
     status: "InTransit"
@@ -31,13 +31,13 @@ router.post("/", (req, res) => {
 });
 
 //route for adding order
-router.post("/2", (req, res) => {
-  var array = mongoose.Types.Array;
+router.post("/multiple", (req, res) => {
   const order = new Order({
     phone: req.body.phone,
     food_name: req.body.food_name,
-    quantity: req.body.quantity,
-    price: req.body.price,
+    food_quantity: req.body.food_quantity,
+    food_price: req.body.food_price,
+    food_imagename: req.body.food_imagename,
     date: moment(),
     status: "InTransit"
   });
@@ -55,7 +55,6 @@ router.post("/2", (req, res) => {
       });
     });
 });
-
 //route for getting all orders
 router.get("/", function(req, res) {
   Order.find({})

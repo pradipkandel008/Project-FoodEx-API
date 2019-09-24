@@ -123,9 +123,9 @@ router.put("/updateCourse/:id", auth, upload.single("course_image"), function(
 });
 
 //route for deleting course
-router.delete("/deleteFood/:id", auth, (req, res) => {
-  Food.findById(req.params.id).then(food => {
-    let path = food.food_imagename;
+router.delete("/deleteBook/:id", auth, (req, res) => {
+  Book.findById(req.params.id).then(food => {
+    let path = food.book_imagename;
     fs.unlink(path, err => {
       if (err) console.log(err);
     });
@@ -133,7 +133,7 @@ router.delete("/deleteFood/:id", auth, (req, res) => {
       .delete()
       .then(function(result) {
         res.status(201).json({
-          message: "Food Deleted Successfully"
+          message: "Book Deleted Successfully"
         });
       })
       .catch(function(e) {

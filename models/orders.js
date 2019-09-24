@@ -9,10 +9,10 @@ const orderSchema = new Schema(
     food_name: {
       type: String
     },
-    quantity: {
+    food_quantity: {
       type: String
     },
-    price: {
+    food_price: {
       type: String
     },
     date: {

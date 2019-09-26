@@ -54,7 +54,7 @@ router.get("/:phone", function(req, res) {
 router.delete("/removefromcart/:id", (req, res) => {
   Cart.findByIdAndDelete(req.params.id)
     .then(function() {
-      res.json("Removed!");
+      res.send("Removed!");
     })
     .catch(function(e) {
       res.send(e);

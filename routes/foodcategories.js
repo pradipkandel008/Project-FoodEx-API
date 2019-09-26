@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/svg+xml") {
     //accept
     cb(null, true);
   } else {
@@ -79,7 +79,7 @@ router.post(
 //route for getting all food category
 router.get("/", function(req, res) {
   Foodcategory.find()
-    .sort({ createdAt: -1 }) //sort in descending order
+    .sort({ createdAt: 1 }) //sort in ascending order
     .exec()
     .then(function(food) {
       res.send(food);

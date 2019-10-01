@@ -18,25 +18,13 @@ await mongoose.connection.close();
 describe('Foodtype  Schema test', () => {     
     it('Add Foodtype testing', () => {         
         const foodtype = {             
-            'first_name': 'Utsav',             
-            'last_name': 'Shrestha',
-            'phone':'9849329276',
-            'email':'shresthau96@gmail.com',
-            'password':'password'         
+            'food_type': 'Chinese',             
+            'food_type_imagename': 'chineseflag.jpg'         
         };                  
         return Foodtype.create(foodtype)             
         .then((pro_ret) => {                 
-            expect(pro_ret.first_name).toEqual('Utsav');  
-            expect(pro_ret.last_name).toEqual('Shrestha');   
-            expect(pro_ret.phone).toEqual('9849329276');             
-            expect(pro_ret.email).toEqual('shresthau96@gmail.com'); 
-            expect(pro_ret.password).toEqual('password'); 
-
-              
-                      
-
-          
-           
+            expect(pro_ret.food_type).toEqual('Chinese');  
+            expect(pro_ret.food_type_imagename).toEqual('chineseflag.jpg');       
         });     }); 
 
         // update the test
@@ -46,7 +34,7 @@ describe('Foodtype  Schema test', () => {
             return Foodtype.updateOne({
                _id :Object('5d21df42a5ecb718a46bbe09'
                )}, 
-               {$set : {first_name:'Dragonball'}})     
+               {$set : {food_type:'Nepalese'}})     
                 .then((pp)=>{         
                     expect(pp.ok).toEqual(1)     
               })    

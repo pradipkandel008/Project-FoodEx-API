@@ -127,37 +127,39 @@ router.get("/:id", function(req, res) {
     });
 });
 
-//route for updating course
-router.put("/updateCourse/:id", auth, upload.single("course_image"), function(
+//route for updating food
+router.put("/updateFood/:id", upload.single("food_image"), async function(
   req,
   res
 ) {
   id = req.params.id.toString();
   if (req.file.path != null) {
-    Course.findById(id).then(course => {
-      let path = course.course_image;
+    Food.findById(id).then(food => {
+      let path = food.food_imagename;
       fs.unlink(path, err => {
         if (err) console.log(err);
       });
     });
   }
 
-  Course.update(
+  Food.update(
     { _id: id },
     {
       $set: {
-        course_name: req.body.course_name,
-        course_duration: req.body.course_duration,
-        course_price: req.body.course_price,
-        course_modules: req.body.course_modules,
-        course_desc: req.body.course_desc,
-        course_image: req.file.path
+        food_name: req.body.food_name,
+        food_category: req.body.food_category,
+        food_type: req.body.food_type,
+        food_price: req.body.food_price,
+        food_description: req.body.food_description,
+        food_imagename: req.file.path,
+        food_rating: "",
+        food_offer: req.body.food_offer
       }
     }
   )
-    .then(function(course) {
+    .then(function(food) {
       res.status(201).json({
-        message: "Course Updated Successfully"
+        message: "Food Updated Successfully"
       });
     })
     .catch(function(e) {

@@ -23,6 +23,9 @@ const orderSchema = new Schema(
     },
     food_imagename: {
       type: String
+    },
+    payment_type: {
+      type:String
     }
   },
   {

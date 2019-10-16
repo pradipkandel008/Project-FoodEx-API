@@ -12,6 +12,7 @@ router.post("/", (req, res) => {
     food_quantity: req.body.food_quantity,
     food_price: req.body.food_price,
     food_imagename: req.body.food_imagename,
+    payment_type: req.body.payment_type,
     date: moment(),
     status: "InTransit"
   });
@@ -70,10 +71,10 @@ router.get("/", function(req, res) {
 });
 
 //route for getting all orders of particular user
-router.get("/", function(req, res) {
-  Order.find({})
+router.get("/:phone", function(req, res) {
+  Order.find({phone:req.params.phone})
     .sort({ createdAt: -1 }) //sort in descending order
-    .populate("u_id")
+    //.populate("u_id")
     .exec()
     .then(function(order) {
       res.send(order);

@@ -1,4 +1,4 @@
-const Order = require('../models/orders');
+const Cart = require('../models/cart');
 const mongoose = require('mongoose');
 const url = "mongodb://localhost:27017/foodExTesting";
 
@@ -15,28 +15,26 @@ await mongoose.connection.close();
 }); 
 
 
-describe('Order  Schema test', () => {     
-    it('Add order testing', () => {         
-        const order = {             
+describe('Cart  Schema test', () => {     
+    it('Add Cart testing', () => {         
+        const cart = {             
             'phone': '9849329276',             
             'food_name': 'Mo:mo',
             'food_quantity':'1',
             'food_price':'100',
-            'status':'active',
             'food_imagename':'momo.jpg', 
-            'payment_type':'cash' 
+            
            
                
         };                  
-        return Order.create(order)             
+        return Cart.create(cart)             
         .then((pro_ret) => {                 
             expect(pro_ret.phone).toEqual('9849329276');  
             expect(pro_ret.food_name).toEqual('Mo:mo');   
             expect(pro_ret.food_quantity).toEqual('1');             
             expect(pro_ret.food_price).toEqual('100'); 
-            expect(pro_ret.status).toEqual('active'); 
             expect(pro_ret.food_imagename).toEqual('momo.jpg'); 
-            expect(pro_ret.payment_type).toEqual('cash'); 
+            
 
             
 
@@ -47,7 +45,7 @@ describe('Order  Schema test', () => {
 
        it('to test the update', async () => { 
  
-            return Order.updateOne({
+            return Cart.updateOne({
                _id :Object('5d21df42a5ecb718a46bbe09'
                )}, 
                {$set : {food_quantity:'2'}})     
@@ -58,8 +56,8 @@ describe('Order  Schema test', () => {
             
 
             //delete the test
-           it('to test the delete order is working or not', async () => {         
-                const status = await Order.deleteMany();         
+           it('to test the delete cart is working or not', async () => {         
+                const status = await Cart.deleteMany();         
                expect(status.ok).toBe(1); });  
 
 

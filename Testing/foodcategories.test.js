@@ -1,4 +1,4 @@
-const Foodtype = require("../models/foodtypes");
+const Foodcategories = require("../models/foodcategories");
 const mongoose = require('mongoose');
 const url = "mongodb://localhost:27017/foodExTesting";
 
@@ -15,17 +15,23 @@ await mongoose.connection.close();
 }); 
 
 
-describe('Foodtype  Schema test', () => {     
+describe('Foodcategories  Schema test', () => {     
     it('Add Foodtype testing', () => {         
-        const foodtype = {             
-            'food_type': 'Chinese',             
-            'food_type_imagename': 'chinese.jpg'
-                    
+        const foodcategories = {             
+            'food_category': 'Mo:mo',             
+            'food_category_imagename': 'momo.jpg'
+                
         };                  
-        return Foodtype.create(foodtype)             
+        return Foodcategories.create(foodcategories)             
         .then((pro_ret) => {                 
-            expect(pro_ret.food_type).toEqual('Chinese');  
-            expect(pro_ret.food_type_imagename).toEqual('chinese.jpg');   
+            expect(pro_ret.food_category).toEqual('Mo:mo');  
+            expect(pro_ret.food_category_imagename).toEqual('momo.jpg');   
+           
+
+              
+                      
+
+          
            
         });     }); 
 
@@ -33,10 +39,10 @@ describe('Foodtype  Schema test', () => {
 
        it('to test the update', async () => { 
  
-            return Foodtype.updateOne({
+            return Foodcategories.updateOne({
                _id :Object('5d21df42a5ecb718a46bbe09'
                )}, 
-               {$set : {food_type:'Japanese'}})     
+               {$set : {food_category:'chowemin'}})     
                 .then((pp)=>{         
                     expect(pp.ok).toEqual(1)     
               })    
@@ -45,7 +51,7 @@ describe('Foodtype  Schema test', () => {
 
             //delete the test
            it('to test the delete user is working or not', async () => {         
-                const status = await Foodtype.deleteMany();         
+                const status = await Foodcategories.deleteMany();         
                expect(status.ok).toBe(1); });  
 
 

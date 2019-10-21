@@ -9,9 +9,6 @@ const orderSchema = new Schema(
     book_name: {
       type: String
     },
-    book_description: {
-      type: String
-    },
     book_price: {
       type: String
     },

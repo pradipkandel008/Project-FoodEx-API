@@ -9,7 +9,6 @@ router.post("/", (req, res) => {
   const order = new BookOrder({
     phone: req.body.phone,
     book_name: req.body.book_name,
-    book_description: req.body.book_description,
     book_price: req.body.book_price,
     book_imagename: req.body.book_imagename,
     payment_type: req.body.payment_type,

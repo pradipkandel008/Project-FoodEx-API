@@ -14,6 +14,7 @@ const ratingRoute = require("./routes/rating");
 const orderRoute = require("./routes/orders");
 const bookRoute = require("./routes/books");
 const restaurantRoute = require("./routes/restaurants");
+const bookOrderRoute = require("./routes/bookorders");
 
 app.use(morgan("dev"));
 app.use("/images", express.static("images"));
@@ -47,6 +48,7 @@ app.use("/ratings", ratingRoute);
 app.use("/orders", orderRoute);
 app.use("/books", bookRoute);
 app.use("/restaurants", restaurantRoute);
+app.use("/bookorders", bookOrderRoute);
 
 //error handling
 app.use((req, res, next) => {

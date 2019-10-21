@@ -45,7 +45,7 @@ router.get("/", function(req, res) {
 
 //route for getting all orders of particular user
 router.get("/:phone", function(req, res) {
-  Order.find({ phone: req.params.phone })
+  BookOrder.find({ phone: req.params.phone })
     .sort({ createdAt: -1 }) //sort in descending order
     .exec()
     .then(function(order) {
